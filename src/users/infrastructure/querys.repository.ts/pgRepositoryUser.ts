@@ -22,5 +22,26 @@ export class QueryRepositoryUser implements QueryUserRepository {
           }
      }
 
+     async getById(id: string): Promise<User | undefined> {
+          try {
+
+               const user = await UserModel.findByPk(id)
+
+               if (!user) return undefined
+
+               return new User(user.name, user.email, user.password, user.id);
+
+          } catch (error) {
+               console.log("-------------------------------------------------");
+               console.log("error en el repositorio: createUser");
+               console.log("-------------------------------------------------");
+               console.log(error);
+               console.log("-------------------------------------------------");
+
+               return undefined
+
+          }
+     }
+
 
 };

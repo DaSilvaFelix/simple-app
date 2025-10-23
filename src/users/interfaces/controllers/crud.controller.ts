@@ -3,6 +3,8 @@ import { CreateUser } from "../../apps/crud.app/createUser";
 import { CrudRepositoryUser } from "../../infrastructure/crud.repository.ts/pgRepositoryUser";
 import { User } from "../../domain/entitis/users";
 
+declare global { namespace Express { interface Request { user?: any; } } }
+
 const repo = new CrudRepositoryUser()
 const service = new CreateUser(repo)
 
@@ -29,4 +31,6 @@ export class CrudUserController {
 
 
      }
+
+
 }

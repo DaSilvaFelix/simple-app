@@ -27,6 +27,4 @@ export class CrudRepositoryUser implements CrudRepository {
 
           }
      }
-
-
 };
