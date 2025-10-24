@@ -9,6 +9,7 @@ import cookieParser from "cookie-parser"
 import session from "express-session"
 import { queryRouter } from "./users/interfaces/routers/query.routes"
 import { crudTaskRouter } from "./task/interface/routers/crud.router"
+import { Sync } from "./shaders/config/db/sync.db"
 
 const app = express()
 const conection = Connection.getInstancia()
@@ -36,6 +37,7 @@ app.use("/api", crudTaskRouter)
 
 app.listen(Env.PORT, () => {
      conection.conect()
+     Sync.syncronitation()
      console.log("server on runnig on port:3000");
      console.log("path:http://localhsot:3000");
 })

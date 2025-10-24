@@ -1,4 +1,5 @@
 import { Sequelize } from "sequelize";
+import { Env } from "../env";
 
 // Clase singleton para conexión única
 export class Connection {
@@ -18,11 +19,14 @@ export class Connection {
           if (this.sequelize) return this.sequelize; // ya conectada
 
           try {
-               this.sequelize = new Sequelize("admin", "postgres", "admin", {
-                    host: "localhost",
-                    port: 5432,
+               this.sequelize = new Sequelize(
+                    Env.DB_NAME!,
+                    Env.DB_USER!,
+                    Env.DB_PASS!, {
+                    host: Env.DB_HOST,
+                    port: Number(Env.DB_PORT!),
                     dialect: "postgres",
-                    logging: false // opcional: desactiva logs SQL
+                    logging: false
                });
 
                console.log("✅ conexión a la base de datos exitosa");

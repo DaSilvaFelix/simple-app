@@ -42,3 +42,4 @@ UserModel.init(
           timestamps: false
      }
 );
+

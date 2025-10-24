@@ -20,8 +20,6 @@ export class CrudTaskController {
 
                const userId = req.user?.id
 
-               console.log(userId);
-
                const data: Task = req.body
 
                const user = await queryUserService.exec(userId)

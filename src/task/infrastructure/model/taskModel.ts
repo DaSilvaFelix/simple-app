@@ -1,5 +1,6 @@
 import { DataTypes, Model } from "sequelize";
 import { Connection } from "../../../shaders/config/db/conection.db";
+import { UserModel } from "../../../users/infrastructure/model/UserModel";
 
 const sequelize = Connection.getInstancia().conect();
 if (!sequelize) throw new Error("⛔ conexión no disponible");
@@ -27,7 +28,6 @@ TaskModel.init({
      text: {
           type: DataTypes.STRING,
           allowNull: false,
-          unique: true,
           validate: { notEmpty: true }
 
      },
@@ -50,4 +50,9 @@ TaskModel.init({
           modelName: "TaskModel",
           tableName: "tasks",
           timestamps: false
-     })
+     });
+
+TaskModel.belongsTo(UserModel, { foreignKey: "owner" });
+UserModel.hasMany(TaskModel, { foreignKey: "owner" });
+
+
