@@ -1,6 +1,6 @@
 import { User } from "../entitis/users";
 
-export interface CrudRepository {
+export interface CrudUserRepository {
      createUser(data: User): Promise<User | undefined>
 
 }

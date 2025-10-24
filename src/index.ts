@@ -8,6 +8,7 @@ import authRouter from "./auth/interfaces/routers/auth.router"
 import cookieParser from "cookie-parser"
 import session from "express-session"
 import { queryRouter } from "./users/interfaces/routers/query.routes"
+import { crudTaskRouter } from "./task/interface/routers/crud.router"
 
 const app = express()
 const conection = Connection.getInstancia()
@@ -30,6 +31,7 @@ app.use(session({
 app.use("/api", crudUserRouter)
 app.use("/api", authRouter)
 app.use("/api", queryRouter)
+app.use("/api", crudTaskRouter)
 
 
 app.listen(Env.PORT, () => {

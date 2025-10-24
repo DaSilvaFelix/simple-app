@@ -1,8 +1,8 @@
 import { UserModel } from "../model/UserModel";
 import { User } from "../../domain/entitis/users";
-import { CrudRepository } from "../../domain/repository/crud.repository";
+import { CrudUserRepository } from "../../domain/repository/crud.repository";
 
-export class CrudRepositoryUser implements CrudRepository {
+export class CrudRepositoryUser implements CrudUserRepository {
      async createUser(data: User): Promise<User | undefined> {
           try {
                const created = await UserModel.create({
