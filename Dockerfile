@@ -6,15 +6,13 @@ COPY package*.json ./
 RUN npm install --production
 
 COPY dist ./dist
-COPY wait-for-postgres.sh /usr/local/bin/
-RUN chmod +x /usr/local/bin/wait-for-postgres.sh
+EXPOSE 3000:3000
 
+# Variables no sensibles
 ENV PORT=3000
-ENV MY_SECRET_KEY=claveSecretaDelPoryectoSimpleApp
 ENV DB_NAME=admin
 ENV DB_USER=postgres
-ENV DB_PASS=admin
-ENV DB_HOST=postgres
 ENV DB_PORT=5432
 
-CMD ["/usr/local/bin/wait-for-postgres.sh", "postgres", "5432", "node", "dist/src/index.js"]
+# No fijes DB_PASS ni DB_HOST aquí
+CMD ["node","./dist/src/index.js"]
